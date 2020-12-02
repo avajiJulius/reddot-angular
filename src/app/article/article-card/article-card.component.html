@@ -1,9 +1,12 @@
-<div class="card" style="width: 18rem;" *ngFor="let article of articles">
+<div class="card" style="width: 18rem;" *ngFor="let article of articleCards;">
     <div class="card-body">
         <h5 class="card-title">{{article.title}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{article.uploadDate}}</h6>
         <p class="card-text">{{article.content}}</p>
-        <a href="#" class="card-link">{{article.id}}</a>
+        <div class="card-link">
+            <p>{{article.rate}}</p>
+            <!-- <ng-content></ng-content> -->
+        </div>
         <a href="#" class="card-link">{{article.author.username}}</a>
     </div>
 </div>

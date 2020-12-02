@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Author } from 'src/app/user/author';
 import { Article } from '../article';
-import { ArticleCardComponent } from '../article-card/article-card.component';
-import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-article-list',
@@ -9,17 +8,31 @@ import { ArticleService } from '../article.service';
   styleUrls: ['./article-list.component.css'],
 })
 export class ArticleListComponent implements OnInit {
-  articleCards: Array<ArticleCardComponent>;
+  public author: Author = { id: 1, username: 'avaji' };
+  public articles: Array<Article>;
 
-  constructor(private articleService: ArticleService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    // this.getArticles();
+    this.articles = [
+      new Article(
+        1,
+        'War',
+        'War is war',
+        new Date(1992, 12, 10).toUTCString(),
+        new Date(2000, 10, 5).toUTCString(),
+        12,
+        this.author
+      ),
+      new Article(
+        2,
+        'Lemon',
+        'I love Lemons',
+        new Date(1992, 12, 10).toUTCString(),
+        new Date(2000, 10, 5).toUTCString(),
+        1003,
+        this.author
+      ),
+    ];
   }
-
-  // private getArticles() {
-  //   this.articleService.getArticleList().subscribe((data) => {
-  //     this.articles = data;
-  //   });
-  // }
 }

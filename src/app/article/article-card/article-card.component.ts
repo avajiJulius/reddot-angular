@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Author } from 'src/app/user/author';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Article } from '../article';
 
 @Component({
@@ -7,32 +6,8 @@ import { Article } from '../article';
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.css'],
 })
-export class ArticleCardComponent implements OnInit {
-  public articles: Array<Article>;
-  public author: Author = { id: 1, username: 'avaji' };
+export class ArticleCardComponent {
+  @Input() public articleCards: Array<Article>;
 
   constructor() {}
-
-  ngOnInit(): void {
-    this.articles = [
-      new Article(
-        1,
-        'War',
-        'War is war',
-        new Date(1992, 12, 10).toUTCString(),
-        new Date(2000, 10, 5).toUTCString(),
-        12,
-        this.author
-      ),
-      new Article(
-        2,
-        'Lemons',
-        'I love lemons',
-        new Date(2008, 2, 12).toUTCString(),
-        new Date(2012, 6, 7).toUTCString(),
-        12,
-        this.author
-      ),
-    ];
-  }
 }
