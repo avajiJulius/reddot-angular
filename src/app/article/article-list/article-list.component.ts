@@ -35,4 +35,12 @@ export class ArticleListComponent implements OnInit {
       ),
     ];
   }
+
+  onRateUp(article: Article) {
+    article.rate++;
+  }
+
+  onRateDown(article: Article) {
+    article.rate--;
+  }
 }

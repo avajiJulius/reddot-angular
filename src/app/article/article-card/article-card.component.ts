@@ -8,6 +8,20 @@ import { Article } from '../article';
 })
 export class ArticleCardComponent {
   @Input() public articleCards: Array<Article>;
+  @Output() private rateUp: EventEmitter<Article>;
+  @Output() private rateDown: EventEmitter<Article>;
 
-  constructor() {}
+  constructor() {
+    this.rateUp = new EventEmitter<Article>();
+    this.rateDown = new EventEmitter<Article>();
+  }
+
+  onRateUp(i) {
+    this.rateUp.emit(this.articleCards[i]);
+    console.log(i);
+  }
+
+  onRateDown(i) {
+    this.rateDown.emit(this.articleCards[i]);
+  }
 }
