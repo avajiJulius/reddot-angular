@@ -33,6 +33,15 @@ export class ArticleListComponent implements OnInit {
         1003,
         this.author
       ),
+      new Article(
+        3,
+        'Test',
+        'Test is important',
+        new Date(1992, 12, 10).toUTCString(),
+        new Date(2000, 10, 5).toUTCString(),
+        100,
+        this.author
+      ),
     ];
   }
 
