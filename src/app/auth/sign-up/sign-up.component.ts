@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { User } from 'src/app/user/user';
 
 @Component({
@@ -7,20 +13,31 @@ import { User } from 'src/app/user/user';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent {
-  public user: User;
-  public confirmed: boolean = false;
+  public signUpForm: FormGroup;
 
-  constructor() {
-    this.user = new User({ id: null, username: '' }, '', '');
+  constructor(private formBuilder: FormBuilder) {
+    this.createForm();
   }
 
-  createUser(signUp) {
-    console.log('Sign up form ', signUp.value);
-    if (signUp.valid) {
-      this.user = signUp.value.user;
-      console.log('Creating user', this.user);
-    } else {
-      console.log('Form is in an invalid state');
-    }
+  get username() {
+    return this.signUpForm.get('username');
+  }
+  get email() {
+    return this.signUpForm.get('email');
+  }
+  get password() {
+    return this.signUpForm.get('password');
+  }
+
+  createForm() {
+    this.signUpForm = this.formBuilder.group({
+      username: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  onSubmit() {
+    console.log('Name Control value', this.signUpForm.value);
   }
 }

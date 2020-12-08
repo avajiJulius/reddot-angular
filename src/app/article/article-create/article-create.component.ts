@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Article } from '../article';
 
 @Component({
@@ -7,27 +8,21 @@ import { Article } from '../article';
   styleUrls: ['./article-create.component.css'],
 })
 export class ArticleCreateComponent {
-  public article: Article;
-  public confirmed: boolean = false;
+  public articleForm: FormGroup;
 
-  constructor() {
-    this.article = new Article(
-      3,
-      '',
-      'Test is important',
-      new Date(1992, 12, 10).toUTCString(),
-      new Date(2000, 10, 5).toUTCString(),
-      100,
-      { id: 2, username: 'cat' },
-      false
-    );
-  }
-
-  setArticleRate(rate) {
-    this.article.rate = rate;
+  constructor(private formBuilder: FormBuilder) {
+    this.createArticle();
   }
 
   createArticle() {
-    console.log('Create Article', this.article);
+    this.articleForm = this.formBuilder.group({
+      title: [null, Validators.required],
+      content: [null, Validators.required],
+      hidden: [false, Validators.required],
+    });
+  }
+
+  onSubmit() {
+    console.log('Article is ', this.articleForm.value);
   }
 }

@@ -1,44 +1,32 @@
 <h2>Sign Up</h2>
 <div class="form-group">
-    <form (ngSubmit)="createUser(signUp)" #signUp="ngForm">
-        <div ngModelGroup="user">
-            <div class="username">
-                <input type="text" placeholder="username" name="identity.username" maxlength="10" #username="ngModel"
-                    required ngModel>
-            </div>
-            <div *ngIf="username.dirty && username.invalid">
-                <div *ngIf="username.errors.maxlength">
-                    Username must be smaller then 10 characters
-                </div>
-                <div *ngIf="username.errors.required">
-                    Username is required
-                </div>
-            </div>
-            <div class="email">
-                <input type="text" placeholder="Email" name="email" #email="ngModel" required ngModel>
-            </div>
-            <div *ngIf="email.dirty && email.invalid">
-                <div *ngIf="email.errors.required">
-                    Email is required
-                </div>
-            </div>
-            <div class="password">
-                <input type="password" placeholder="Password" name="password" minlength="6" #password="ngModel" required
-                    ngModel>
-            </div>
-            <div *ngIf="password.dirty && password.invalid">
-                <div *ngIf="password.errors.minlength">
-                    Password is required minimul 6 characters
-                </div>
-                <div *ngIf="password.errors.required">
-                    Password is required
-                </div>
-            </div>
-            <div class="user-confirm">
-                <input type="checkbox" name="confirmed" [(ngModel)]="confirmed"> I confirm
-            </div>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="username">
+            <input type="text" placeholder="username" name="username" formControlName="username">
         </div>
-        <button [disabled]="!confirmed" type="submit">Sign Up</button>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)">
+            Username is required!
+        </div>
+        <div class="email">
+            <input type="text" placeholder="Email" name="email" formControlName="email">
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            Enter the valid email!
+        </div>
+        <div *ngIf="email.invalid && email.touched">
+            Email is required!
+        </div>
+        <div class="password">
+            <input type="password" placeholder="Password" name="password" formControlName="password">
+        </div>
+        <div *ngIf="password.invalid && password.touched">
+            Password is required!
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+            Password must have more then 6 characters
+        </div>
+        <button type="submit">Sign Up</button>
     </form>
 </div>
-<h4>User is {{ user | json}}</h4>
+<h4>Value: {{  signUpForm.value | json}}</h4>
+<h4>Status: {{  signUpForm.status | json}}</h4>
