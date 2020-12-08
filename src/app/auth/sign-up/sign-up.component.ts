@@ -14,7 +14,13 @@ export class SignUpComponent {
     this.user = new User({ id: null, username: '' }, '', '');
   }
 
-  createUser() {
-    console.log('User is ', this.user);
+  createUser(signUp) {
+    console.log('Sign up form ', signUp.value);
+    if (signUp.valid) {
+      this.user = signUp.value.user;
+      console.log('Creating user', this.user);
+    } else {
+      console.log('Form is in an invalid state');
+    }
   }
 }

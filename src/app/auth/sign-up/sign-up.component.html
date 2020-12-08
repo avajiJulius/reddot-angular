@@ -1,19 +1,44 @@
 <h2>Sign Up</h2>
 <div class="form-group">
-    <form (ngSubmit)="createUser()">
-        <div class="username">
-            <input type="text" placeholder="username" name="userUsername" [(ngModel)]="user.identity.username">
+    <form (ngSubmit)="createUser(signUp)" #signUp="ngForm">
+        <div ngModelGroup="user">
+            <div class="username">
+                <input type="text" placeholder="username" name="identity.username" maxlength="10" #username="ngModel"
+                    required ngModel>
+            </div>
+            <div *ngIf="username.dirty && username.invalid">
+                <div *ngIf="username.errors.maxlength">
+                    Username must be smaller then 10 characters
+                </div>
+                <div *ngIf="username.errors.required">
+                    Username is required
+                </div>
+            </div>
+            <div class="email">
+                <input type="text" placeholder="Email" name="email" #email="ngModel" required ngModel>
+            </div>
+            <div *ngIf="email.dirty && email.invalid">
+                <div *ngIf="email.errors.required">
+                    Email is required
+                </div>
+            </div>
+            <div class="password">
+                <input type="password" placeholder="Password" name="password" minlength="6" #password="ngModel" required
+                    ngModel>
+            </div>
+            <div *ngIf="password.dirty && password.invalid">
+                <div *ngIf="password.errors.minlength">
+                    Password is required minimul 6 characters
+                </div>
+                <div *ngIf="password.errors.required">
+                    Password is required
+                </div>
+            </div>
+            <div class="user-confirm">
+                <input type="checkbox" name="confirmed" [(ngModel)]="confirmed"> I confirm
+            </div>
         </div>
-        <div class="email">
-            <input type="text" placeholder="Email" name="userEmail" [(ngModel)]="user.email">
-        </div>
-        <div class="password">
-            <input type="password" placeholder="Password" name="userPassword" [(ngModel)]="user.password">
-        </div>
-        <div class="article-confirm">
-            <input type="checkbox" name="articleConfirm" [(ngModel)]="confirmed"> I confirm
-        </div>
+        <button [disabled]="!confirmed" type="submit">Sign Up</button>
     </form>
-    <button [disabled]="!confirmed" type="submit">Sign Up</button>
 </div>
-<h4>Article title is {{user | json}}</h4>
+<h4>User is {{ user | json}}</h4>

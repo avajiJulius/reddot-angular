@@ -1,0 +1,11 @@
+.username .ng-valid,
+.email .ng-valid,
+.password .ng-valid {
+  background-color: green;
+}
+
+.username .ng-invalid,
+.email .ng-invalid,
+.password .ng-invalid {
+  background-color: red;
+}
