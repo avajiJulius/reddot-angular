@@ -1,0 +1,23 @@
+<h2>Create Article Form</h2>
+<div class="form-group">
+    <form (ngSubmit)="createArticle()">
+        <div class="article-title">
+            <input type="text" placeholder="Title" name="articleTitle" [(ngModel)]="article.title">
+        </div>
+        <div class="article-content">
+            <input type="text" placeholder="Content" name="articleContent" [(ngModel)]="article.content">
+        </div>
+        <div class="article-rate">
+            <input type="number" placeholder="Rate" name="articleRate" [ngModel]="article.rate"
+                (ngModelChange)="setArticleRate($event)">
+        </div>
+        <div class="article-hidden">
+            Private <input type="checkbox" name="articleHidden" [(ngModel)]="article.hidden">
+        </div>
+        <div class="article-confirm">
+            <input type="checkbox" name="articleConfirm" [(ngModel)]="confirmed"> I confirm
+        </div>
+    </form>
+    <button [disabled]="!confirmed" type="submit">Create</button>
+</div>
+<h4>Article title is {{article | json}}</h4>

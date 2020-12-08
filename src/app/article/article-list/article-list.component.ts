@@ -22,7 +22,8 @@ export class ArticleListComponent implements OnInit {
         new Date(1992, 12, 10).toUTCString(),
         new Date(2000, 10, 5).toUTCString(),
         12,
-        this.author
+        this.author,
+        false
       ),
       new Article(
         2,
@@ -31,7 +32,8 @@ export class ArticleListComponent implements OnInit {
         new Date(1992, 12, 10).toUTCString(),
         new Date(2000, 10, 5).toUTCString(),
         1003,
-        this.author
+        this.author,
+        false
       ),
       new Article(
         3,
@@ -40,7 +42,8 @@ export class ArticleListComponent implements OnInit {
         new Date(1992, 12, 10).toUTCString(),
         new Date(2000, 10, 5).toUTCString(),
         100,
-        this.author
+        this.author,
+        false
       ),
     ];
   }

@@ -1,0 +1,19 @@
+<h2>Sign Up</h2>
+<div class="form-group">
+    <form (ngSubmit)="createUser()">
+        <div class="username">
+            <input type="text" placeholder="username" name="userUsername" [(ngModel)]="user.identity.username">
+        </div>
+        <div class="email">
+            <input type="text" placeholder="Email" name="userEmail" [(ngModel)]="user.email">
+        </div>
+        <div class="password">
+            <input type="password" placeholder="Password" name="userPassword" [(ngModel)]="user.password">
+        </div>
+        <div class="article-confirm">
+            <input type="checkbox" name="articleConfirm" [(ngModel)]="confirmed"> I confirm
+        </div>
+    </form>
+    <button [disabled]="!confirmed" type="submit">Sign Up</button>
+</div>
+<h4>Article title is {{user | json}}</h4>

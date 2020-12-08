@@ -2,19 +2,17 @@ import { Data } from '@angular/router';
 import { Author } from '../user/author';
 
 export class Article {
-  hidden: boolean = false;
-
   constructor(
-    public articleId: number,
+    public readonly articleId: number,
     public title: string,
     public content: string,
     public uploadDate: string,
     public editDate: string,
     public rate: number,
-    public author: Author
-  ) {}
-
-  isPrivate(): boolean {
-    return this.hidden == true;
+    public author: Author,
+    public hidden: boolean
+  ) {
+    this.rate = 0;
+    this.hidden = false;
   }
 }

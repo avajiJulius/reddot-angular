@@ -1,4 +1,3 @@
-import { Article } from '../article';
 import { ArticleListComponent } from './article-list.component';
 
 describe('ArticleListComponent', () => {
