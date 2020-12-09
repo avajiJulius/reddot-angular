@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ArticleService } from 'src/app/services/article.service';
 import { Article } from '../article';
 
 @Component({
@@ -7,21 +9,7 @@ import { Article } from '../article';
   styleUrls: ['./article-card.component.css'],
 })
 export class ArticleCardComponent {
-  @Input() public articleCards: Array<Article>;
-  @Output() private rateUp: EventEmitter<Article>;
-  @Output() private rateDown: EventEmitter<Article>;
+  @Input() public article: Article;
 
-  constructor() {
-    this.rateUp = new EventEmitter<Article>();
-    this.rateDown = new EventEmitter<Article>();
-  }
-
-  onRateUp(i) {
-    this.rateUp.emit(this.articleCards[i]);
-    console.log(i);
-  }
-
-  onRateDown(i) {
-    this.rateDown.emit(this.articleCards[i]);
-  }
+  constructor(private articleService: ArticleService) {}
 }

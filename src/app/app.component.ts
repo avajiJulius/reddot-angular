@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from './services/article.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'RedDot';
+  // constructor(public articleService: ArticleService){}
+
   ngOnInit(): void {}
 }

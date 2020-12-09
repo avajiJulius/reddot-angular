@@ -29,20 +29,18 @@ export class ArticleCreateComponent {
   }
 
   onSubmit() {
-    let isCreated = this.createArticle();
-    this.sendMessageOnCreate(isCreated);
+    this.createArticle();
   }
 
-  private createArticle(): boolean {
+  private createArticle() {
     this.article = Object.assign({}, this.articleForm.value);
-    return this.articleService.createArticle(this.article);
-  }
-
-  private sendMessageOnCreate(isCreated: boolean) {
-    if (isCreated) {
-      this.message = 'Successful created article!';
-    } else {
-      this.message = 'Article with this title already exist!';
-    }
+    this.articleService.createArticleWithNotify(this.article).subscribe(
+      (notify: any) => {
+        this.message = notify.msg;
+      },
+      (err) => {
+        this.message = err.msg;
+      }
+    );
   }
 }

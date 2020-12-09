@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ArticleCreateComponent } from './forms/article-create/article-create.component';
 import { SignUpComponent } from './forms/sign-up/sign-up.component';
 import { ArticleService } from './services/article.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ArticleService } from './services/article.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ArticleService],
+  providers: [ArticleService, AuthenticationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

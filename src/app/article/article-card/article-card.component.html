@@ -1,13 +1,10 @@
-<div class="card" style="width: 18rem;" *ngFor="let article of articleCards; index as i">
+<div class="card" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">{{article.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{article.uploadDate}}</h6>
+        <!-- <h6 class="card-subtitle mb-2 text-muted">{{article.uploadDate}}</h6> -->
         <p class="card-text">{{article.content}}</p>
         <div class="card-link">
             <p>{{article.rate}}</p>
-            <button (click)="onRateUp(i)" type="button" class="btn btn-primary btn-sm">Rate Up</button>
-            <button (click)="onRateDown(i)" type="button" class="btn btn-secondary btn-sm">Rate
-                Down</button>
         </div>
         <a href="#" class="card-link">{{article.author.username}}</a>
     </div>

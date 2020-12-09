@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ArticleService } from 'src/app/services/article.service';
-import { Author } from 'src/app/user/author';
 import { Article } from '../article';
 
 @Component({
@@ -9,19 +9,10 @@ import { Article } from '../article';
   styleUrls: ['./article-list.component.css'],
 })
 export class ArticleListComponent implements OnInit {
-  public articles: Array<Article>;
-
+  public articles$: Observable<Article[]>;
   constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
-    this.articles = this.articleService.getArticles();
-  }
-
-  onRateUp(article: Article) {
-    this.articleService.onRateUp(article);
-  }
-
-  onRateDown(article: Article) {
-    this.articleService.onRateDown(article);
+    this.articles$ = this.articleService.getArticles();
   }
 }
