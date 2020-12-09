@@ -1,4 +1,5 @@
 <h2>Create Article Form</h2>
+<div *ngIf="message">{{message}}</div>
 <div class="form-group">
     <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
         <div class="title">
@@ -12,6 +13,5 @@
         </div>
         <button type="submit">Create</button>
     </form>
-
 </div>
-<h4>Article title is {{articleForm.value | json}}</h4>
+<h4>Article title is {{article | json}}</h4>

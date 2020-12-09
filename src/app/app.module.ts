@@ -6,14 +6,15 @@ import { AppComponent } from './app.component';
 import { ArticleListComponent } from './article/article-list/article-list.component';
 import { ArticleCardComponent } from './article/article-card/article-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ArticleCreateComponent } from './article/article-create/article-create.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { ArticleCreateComponent } from './forms/article-create/article-create.component';
+import { SignUpComponent } from './forms/sign-up/sign-up.component';
+import { ArticleService } from './services/article.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArticleListComponent,
     ArticleCardComponent,
+    ArticleListComponent,
     ArticleCreateComponent,
     SignUpComponent,
   ],
@@ -23,7 +24,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ArticleService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

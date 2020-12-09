@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from 'src/app/services/article.service';
 import { Author } from 'src/app/user/author';
 import { Article } from '../article';
 
@@ -8,51 +9,19 @@ import { Article } from '../article';
   styleUrls: ['./article-list.component.css'],
 })
 export class ArticleListComponent implements OnInit {
-  public author: Author = { id: 1, username: 'avaji' };
   public articles: Array<Article>;
 
-  constructor() {}
+  constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
-    this.articles = [
-      new Article(
-        1,
-        'War',
-        'War is war',
-        new Date(1992, 12, 10).toUTCString(),
-        new Date(2000, 10, 5).toUTCString(),
-        12,
-        this.author,
-        false
-      ),
-      new Article(
-        2,
-        'Lemon',
-        'I love Lemons',
-        new Date(1992, 12, 10).toUTCString(),
-        new Date(2000, 10, 5).toUTCString(),
-        1003,
-        this.author,
-        false
-      ),
-      new Article(
-        3,
-        'Test',
-        'Test is important',
-        new Date(1992, 12, 10).toUTCString(),
-        new Date(2000, 10, 5).toUTCString(),
-        100,
-        this.author,
-        false
-      ),
-    ];
+    this.articles = this.articleService.getArticles();
   }
 
   onRateUp(article: Article) {
-    article.rate++;
+    this.articleService.onRateUp(article);
   }
 
   onRateDown(article: Article) {
-    article.rate--;
+    this.articleService.onRateDown(article);
   }
 }

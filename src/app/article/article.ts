@@ -11,8 +11,5 @@ export class Article {
     public rate: number,
     public author: Author,
     public hidden: boolean
-  ) {
-    this.rate = 0;
-    this.hidden = false;
-  }
+  ) {}
 }
